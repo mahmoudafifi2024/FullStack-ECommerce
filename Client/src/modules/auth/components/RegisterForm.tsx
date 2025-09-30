@@ -22,7 +22,11 @@ const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
 const mutation = useRegister();
 
 const onSubmit = (data: FormData) => {
-    mutation.mutate(data);
+    console.log("Form Data:", data); 
+    mutation.mutate(data, {
+    onSuccess: (res) => console.log("Mutation success:", res),
+    onError: (err) => console.log("Mutation error:", err),
+    });
 };
 
 return (
@@ -41,7 +45,7 @@ return (
     </Button>
 
     {mutation.isError && (
-        <p className="text-red-500 text-sm">{mutation.error.message}</p>
+        <p className="text-red-500 text-sm">{(mutation.error).message}</p>
     )}
     {mutation.isSuccess && (
         <p className="text-green-600 text-sm">{mutation.data.message}</p>

@@ -1,14 +1,14 @@
-import express, { Request, Response } from 'express';
+// src/server.ts
+import app from "./app.js";
+import { connectDB } from "./config/db.js";
+import { ENV } from "./config/env.js";
 
-const app = express();
-const PORT = 3000;
+const start = async () => {
+  await connectDB();
 
-// مسار تجريبي
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello from Express with TypeScript!');
-});
+  app.listen(ENV.PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${ENV.PORT}`);
+  });
+};
 
-// تشغيل السيرفر
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+start();
