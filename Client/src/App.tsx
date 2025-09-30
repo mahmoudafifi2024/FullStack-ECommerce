@@ -1,13 +1,15 @@
-import './App.css'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegisterPage from "./modules/auth/pages/RegisterPage";
 
-
-function App() {
-
+const App: React.FC = () => {
   return (
-    <>
-      <h1>hello world!</h1>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
